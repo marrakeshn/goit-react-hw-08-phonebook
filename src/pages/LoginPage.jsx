@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet';
-import { SignIn } from 'components/signInForm/SignIn';
+import SignInForm from 'components/signInForm/SignIn';
 
 export default function Login() {
   return (
     <div>
       <Helmet>
-        <title>Login</title>
+        <title>SignIn</title>
       </Helmet>
-      <SignIn />
+      <SignInForm />
     </div>
   );
 }
