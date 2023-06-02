@@ -12,7 +12,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
-import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -35,50 +34,20 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [lastName, setLastName] = useState('');
   const dispatch = useDispatch();
-
-  const handleChange = event => {
-    const { name, value } = event.currentTarget;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'lastName':
-        setLastName(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-    }
-  };
 
   const handleSubmit = event => {
     event.preventDefault();
-    const data = event.currentTarget;
+    const form = event.currentTarget;
     dispatch(
       register({
-        name: data.elements.name.value,
-        lastName: data.elements.lastName.value,
-        email: data.elements.email.value,
-        password: data.elements.password.value,
+        name: form.elements.name.value,
+        lastName: form.elements.lastName.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
       })
     );
-    onReset();
-  };
-
-  const onReset = () => {
-    setName('');
-    setLastName('');
-    setEmail('');
-    setPassword('');
+    form.reset();
   };
 
   return (
@@ -101,68 +70,35 @@ export default function SignUp() {
           </Typography>
           <Box
             component="form"
-            noValidate
+            // noValidate
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  value={name}
-                  onChange={handleChange}
-                />
+                <TextField type="text" name="name" label="First Name" />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  value={lastName}
-                  onChange={handleChange}
-                />
+                <TextField type="text" label="Last Name" name="lastName" />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
-                  id="email"
+                  type="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  value={password}
-                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" sx={{ mt: 3, mb: 2 }}>
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
@@ -179,3 +115,56 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
+
+// import { useDispatch } from 'react-redux';
+// import { register } from 'redux/auth/authOperations';
+// import { Label, Input, Button } from './RegisterForm.styled';
+
+// export const RegisterForm = () => {
+//   const dispatch = useDispatch();
+
+//   const onSubmit = e => {
+//     e.preventDefault();
+//     const form = e.currentTarget;
+//     dispatch(
+//       register({
+//         name: form.elements.name.value,
+//         email: form.elements.email.value,
+//         password: form.elements.password.value,
+//       })
+//     );
+//     form.reset();
+//   };
+
+//   return (
+//     <>
+//       <h2>Sign Up</h2>
+//       <form
+//         style={{
+//           display: 'flex',
+//           flexDirection: 'column',
+//           border: '1px solid black',
+//           width: '500px',
+//           padding: '20px',
+//           gap: '20px',
+//         }}
+//         onSubmit={onSubmit}
+//         autoComplete="off"
+//       >
+//         <Label>
+//           Username
+//           <Input type="text" name="name" placeholder="Enter user name" />
+//         </Label>
+//         <Label>
+//           Email
+//           <Input type="email" name="email" placeholder="Enter email" />
+//         </Label>
+//         <Label>
+//           Password
+//           <Input type="password" name="password" placeholder="Enter password" />
+//         </Label>
+//         <Button type="submit">Register</Button>
+//       </form>
+//     </>
+//   );
+// };
