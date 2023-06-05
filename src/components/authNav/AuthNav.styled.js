@@ -11,6 +11,6 @@ export const AuthNavLink = styled(NavLink)`
   }
 
   &.active {
-    color: blue;
+    color: #2196F3;
   }
 `;
