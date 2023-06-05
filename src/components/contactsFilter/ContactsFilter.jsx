@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { onChangeValue } from 'redux/contacts/filterSlice';
 import { selectFilter } from 'redux/contacts/selectors';
-import styles from './ContactsFilter.module.css';
+import TextField from '@mui/material/TextField';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -9,13 +9,16 @@ export const Filter = () => {
 
   return (
     <>
-      <label className={styles.label}>Find contacts by name </label>
-      <input
-        className={styles.input}
+      <TextField
+        label="Find contacts by name"
+        id="findName"
         type="text"
+        name="filter"
         value={value}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         onChange={e => dispatch(onChangeValue(e.target.value))}
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        required
       />
     </>
   );

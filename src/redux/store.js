@@ -1,13 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { fetchContacts } from './contacts/operations';
 import { reducer } from './reducer';
-//
-// export const store = configureStore({
-//   reducer: reducer,
-// });
-//
-// store.dispatch(fetchContacts());
-
 
 import {
   persistStore,

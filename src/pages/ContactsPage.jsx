@@ -7,6 +7,8 @@ import { ContactsList } from 'components/contactsList/ContactsList';
 import { ContactsForm } from 'components/contactsForm/ContactsForm';
 import styles from '../components/App.module.css';
 import { Helmet } from 'react-helmet';
+import { Loader } from '../components/loader/Loader';
+
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -19,10 +21,10 @@ export default function ContactsPage() {
   return (
     <div className={styles.wrapper}>
       <Helmet>
-        <title className={styles.titleContacts}>Contacts</title>
+        <title>Contacts</title>
       </Helmet>
       <ContactsForm />
-      <div>{isLoading && 'Loading...'}</div>
+      <div>{isLoading && <Loader />}</div>
       <Filter />
       <ContactsList />
     </div>
