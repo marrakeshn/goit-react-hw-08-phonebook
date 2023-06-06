@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { logOut } from 'redux/auth/authOperations';
-import Button from '@mui/material/Button';
+import { Logoutbtn } from './UserMenu.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -12,13 +12,13 @@ export const UserMenu = () => {
       <p style={{ fontWeight: 'bold', fontSize: '16px', textAlign: 'end', color: '#2196F3' }}>
         Welcome, {user.name}!
       </p>
-      <Button
+      <Logoutbtn
         variant="contained"
         type="button"
         onClick={() => dispatch(logOut())}
       >
         Logout
-      </Button>
+      </Logoutbtn>
     </div>
   );
 };
